@@ -16,8 +16,32 @@ public class AI2 {
 
       Scanner vScan = null;
       Scanner cScan = null;
+      Map<String, List<Integer>> vList = new HashMap<String, List<Integer>>();
+      
       try { //var file parsing
+    	  vScan = new Scanner(varF);
+    	  
+    	  //String[] parts = list.split(":");
+          while(vScan.hasNext())
+          {
+        	  String key = vScan.next();
+        	  List<Integer> tempList = new ArrayList<Integer>();
+        	  //System.out.println("KEY: " + key);
+        	  
+        	  
+        	  while(vScan.hasNextInt())
+        		  tempList.add(vScan.nextInt());
+        	    	  
+        	  //System.out.println("VALUE: " + tempList);
+        	  vList.put(key.substring(0, 1), tempList);
+          }  
+          
+          // Check map
+          for (Map.Entry entry : vList.entrySet()) {
+        	    System.out.println(entry.getKey() + ", " + entry.getValue());
+        	}
 
+          vScan.close();
       } //end try
       catch(FileNotFoundException e) {
         e.printStackTrace();
